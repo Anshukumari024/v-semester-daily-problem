@@ -16,48 +16,31 @@
 class Solution {
     public TreeNode deleteNode(TreeNode root, int key) {
         if(root==null) return null;
-        if(root.val==key) return helper(root);
-        TreeNode dummy=root;
-        while(root!=null){
-            if(root.val>key){
-                if(root.left!=null && root.left.val==key){
-                    root.left=helper(root.left);
-                    break;
-                }
-                else{
-                    root=root.left;
-                }
-            }
-           else{
-                if(root.right!=null && root.right.val==key){
-                    root.right=helper(root.right);
-                    break;
-                }
-                else{
-                    root=root.right;
-                }
-            }
+        if(root.val<key){
+            root.right=deleteNode(root.right,key);
         }
-        return dummy;
-    }
-    public TreeNode helper(TreeNode root){
-        if(root.left==null){
-            return root.right;
-        }
-        else if(root.right==null){
-            return root.left;
+        else if(root.val>key){
+            root.left=deleteNode(root.left,key);
         }
         else{
-            TreeNode rc=root.right;
-            TreeNode lr=flr(root.left);
-            lr.right=rc;
-            return root.left;
+            if(root.left==null){
+                return root.right;
+            }
+            else if(root.right==null){
+                return root.left;
+            }
+            else{
+                int max=max(root.left);
+                root.left=deleteNode(root.left,max);
+                root.val=max;
+            }
         }
+        return root;
     }
-    public TreeNode flr(TreeNode root){
-        if(root.right==null){
-            return root;
-        }
-        return flr(root.right);
+    public int max(TreeNode root){
+        if(root==null) return Integer.MIN_VALUE;
+
+        int max=max(root.right);
+        return Math.max(max,root.val);
     }
 }
