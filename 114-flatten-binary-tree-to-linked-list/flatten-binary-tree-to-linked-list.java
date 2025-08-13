@@ -15,24 +15,19 @@
  */
 class Solution {
     public void flatten(TreeNode root) {
-        if (root == null) return;
-
-        Stack<TreeNode> st = new Stack<>();
-        st.push(root);
-
-        while (!st.isEmpty()) {
-            TreeNode curr = st.pop();
-            if (curr.right != null) {
-                st.push(curr.right);
-            }
-            if (curr.left != null) {
-                st.push(curr.left);
-            }
-            if (!st.isEmpty()) {
-                curr.right = st.peek(); 
-            }
-
-            curr.left = null; 
+        MakeLL(root);
+        
+    }
+    public TreeNode MakeLL(TreeNode root){
+        if(root==null) return null;
+        if(root.left==null && root.right==null) return root;
+        TreeNode left_tail=MakeLL(root.left);
+        TreeNode right_tail=MakeLL(root.right);
+        if(root.left!=null){
+            left_tail.right=root.right;
+            root.right=root.left;
+            root.left=null;
         }
+        return right_tail!=null?right_tail:left_tail;
     }
 }
