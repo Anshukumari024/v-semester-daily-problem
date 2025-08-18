@@ -6,7 +6,7 @@ class Solution {
         dp[0]=0;
         for(int i=0;i<nums.length;i++){
             sum+=nums[i];
-            int rem=(int)(sum%k +k)%k;
+            int rem=(int)(sum%k);
 
             sum=Math.min(sum,dp[rem]);
             dp[rem]=Math.min(dp[rem],sum);
