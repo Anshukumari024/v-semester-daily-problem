@@ -14,7 +14,8 @@ class Solution {
                 }
             }
         }
-        Arrays.sort(dp);
-        return dp[dp.length-1];
+        return Arrays.stream(dp).max().getAsInt();
+        // Arrays.sort(dp);
+        // return dp[dp.length-1];
     }
 }
