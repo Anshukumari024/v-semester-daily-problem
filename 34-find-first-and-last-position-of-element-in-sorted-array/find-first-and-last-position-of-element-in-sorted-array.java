@@ -1,8 +1,8 @@
 class Solution {
     public int[] searchRange(int[] nums, int target) {
         int n=nums.length;
-        int l=first(nums,target);
-        int r=first(nums,target+1);
+        int l=search(nums,target);
+        int r=search(nums,target+1);
         if(l==r){
             return new int[] {-1,-1};
         }
@@ -11,11 +11,10 @@ class Solution {
         }
 
     }
-    public static int first(int[] arr,int t){
+    public static int search(int[] arr,int t){
         int result=-1;
-        int p=arr.length;
         int l=0;
-        int h=p;
+        int h=arr.length;
         while(l<h){
             int mid=l+(h-l)/2;
             if(arr[mid]>=t){
