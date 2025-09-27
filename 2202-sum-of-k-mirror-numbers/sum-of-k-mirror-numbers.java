@@ -20,8 +20,8 @@ class Solution {
         return sum;
     }
 
-    public long ischeck(int half, int l) {
-        String s = String.valueOf(half);
+    public long ischeck(int num, int l) {
+        String s = String.valueOf(num);
         String r = new StringBuilder(s).reverse().toString();
         if(l%2==0){
             return Long.parseLong(s+r);
