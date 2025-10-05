@@ -1,6 +1,6 @@
 class Solution {
     public boolean predictTheWinner(int[] nums) {
-        int[][] dp=new int[23][23];
+        int[][] dp=new int[20][20];
         for(int[] arr:dp) Arrays.fill(arr,-1);
         int n=nums.length;
         int total=Arrays.stream(nums).sum();
